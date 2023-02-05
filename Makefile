@@ -3,6 +3,7 @@ up:
 	docker compose up -d
 	symfony server:start -d --no-tls
 	symfony run -d --watch=config,src,templates,vendor symfony console messenger:consume async
+	symfony run -d npx encore dev-server
 	symfony server:log
 
 down:
