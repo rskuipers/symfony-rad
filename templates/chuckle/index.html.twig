@@ -3,23 +3,9 @@
 {% block title %}Chuckle index{% endblock %}
 
 {% block body %}
-{#    {% if app.user %}#}
-{#        {{ form_start(form) }}#}
-{#            <div class="row send-chuckle align-items-center">#}
-{#                <div class="col-auto">#}
-{#                    <div class="chuckle-author">#}
-{#                        <img src="https://i.pravatar.cc/150?u={{ app.user.id }}" class="img-fluid rounded-circle"/>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col">#}
-{#                    {{ form_widget(form.message) }}#}
-{#                </div>#}
-{#                <div class="col-auto">#}
-{#                    <button class="btn btn-primary">Send</button>#}
-{#                </div>#}
-{#            </div>#}
-{#        {{ form_end(form) }}#}
-{#    {% endif %}#}
+    {% if app.user %}
+        {{ include('chuckle/new.html.twig') }}
+    {% endif %}
     <div id="chuckles" class="chuckles">
         {% for chuckle in chuckles %}
             <div id="chuckle-{{ chuckle.id }}" class="chuckle my-4">

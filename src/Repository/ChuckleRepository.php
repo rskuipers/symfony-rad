@@ -63,4 +63,11 @@ class ChuckleRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function getTimeline()
+    {
+        $qb = $this->createQueryBuilder('c');
+        $qb->orderBy('c.createdAt', 'DESC');
+
+        return $qb->getQuery()->getResult();
+    }
 }

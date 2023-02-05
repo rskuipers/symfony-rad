@@ -16,8 +16,11 @@ class ChuckleController extends AbstractController
     #[Route('/', name: 'app_chuckle_index', methods: ['GET'])]
     public function index(ChuckleRepository $chuckleRepository): Response
     {
+        $form = $this->createForm(ChuckleType::class);
+
         return $this->render('chuckle/index.html.twig', [
-            'chuckles' => $chuckleRepository->findAll(),
+            'chuckles' => $chuckleRepository->getTimeline(),
+            'form' => $form->createView()
         ]);
     }
 
