@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Chuckle{% endblock %}
+
+{% block body %}
+    <h1>Create new Chuckle</h1>
+
+    {{ include('chuckle/_form.html.twig') }}
+
+    <a href="{{ path('app_chuckle_index') }}">back to list</a>
+{% endblock %}
