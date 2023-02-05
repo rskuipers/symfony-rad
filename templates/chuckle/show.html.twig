@@ -15,6 +15,14 @@
                 <th>Message</th>
                 <td>{{ chuckle.message }}</td>
             </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ chuckle.createdAt ? chuckle.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ chuckle.updatedAt ? chuckle.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
         </tbody>
     </table>
 
