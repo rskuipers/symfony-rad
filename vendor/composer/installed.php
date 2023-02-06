@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => 'e27e2beaa4121aace1c53f9f75c0f76b0c202ee9',
+        'pretty_version' => 'dev-step-9',
+        'version' => 'dev-step-9',
+        'reference' => '6b463758f304a4c9dd7aa4ecb7a0a498994efdbc',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => 'e27e2beaa4121aace1c53f9f75c0f76b0c202ee9',
+            'pretty_version' => 'dev-step-9',
+            'version' => 'dev-step-9',
+            'reference' => '6b463758f304a4c9dd7aa4ecb7a0a498994efdbc',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -187,6 +187,24 @@
             'reference' => 'dd19fe8e07cc3f374308565667eecd4958c22106',
             'type' => 'library',
             'install_path' => __DIR__ . '/../laminas/laminas-code',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'lcobucci/clock' => array(
+            'pretty_version' => '3.0.0',
+            'version' => '3.0.0.0',
+            'reference' => '039ef98c6b57b101d10bd11d8fdfda12cbd996dc',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../lcobucci/clock',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'lcobucci/jwt' => array(
+            'pretty_version' => '4.3.0',
+            'version' => '4.3.0.0',
+            'reference' => '4d7de2fe0d51a96418c0d04004986e410e87f6b4',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../lcobucci/jwt',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -365,6 +383,21 @@
             'dev_requirement' => false,
             'provided' => array(
                 0 => '2.0|3.0',
+            ),
+        ),
+        'psr/clock' => array(
+            'pretty_version' => '1.0.0',
+            'version' => '1.0.0.0',
+            'reference' => 'e41a24703d4560fd0acb709162f73b8adfc3aa0d',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../psr/clock',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'psr/clock-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '1.0',
             ),
         ),
         'psr/container' => array(
@@ -871,6 +904,24 @@
             'install_path' => __DIR__ . '/../symfony/maker-bundle',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'symfony/mercure' => array(
+            'pretty_version' => 'v0.6.2',
+            'version' => '0.6.2.0',
+            'reference' => '2bc97aab5d50a91dd4d93dc6c8abbc0816073c62',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/mercure',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/mercure-bundle' => array(
+            'pretty_version' => 'v0.3.5',
+            'version' => '0.3.5.0',
+            'reference' => 'fed303b571bbb58a411e02d52bebfe3b86d774ee',
+            'type' => 'symfony-bundle',
+            'install_path' => __DIR__ . '/../symfony/mercure-bundle',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'symfony/messenger' => array(
             'pretty_version' => 'v6.2.5',

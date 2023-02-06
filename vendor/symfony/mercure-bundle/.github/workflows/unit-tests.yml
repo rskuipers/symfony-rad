@@ -1,0 +1,66 @@
+name: "unit tests"
+
+on: ["pull_request", "push"]
+
+jobs:
+  unit-tests:
+    name: "unit tests"
+
+    runs-on: ${{ matrix.operating-system }}
+
+    env:
+      COMPOSER_ROOT_VERSION: 'dev-main'
+      SYMFONY_DEPRECATIONS_HELPER: max[self]=0
+
+    strategy:
+      matrix:
+        dependencies:
+          - "lowest"
+          - "highest"
+        php-version:
+          - "7.1"
+          - "7.2"
+          - "7.3"
+          - "7.4"
+          - "8.0"
+          - "8.1"
+        operating-system:
+          - "ubuntu-latest"
+
+    steps:
+      - name: "checkout"
+        uses: "actions/checkout@v2"
+
+      - name: "installing PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "${{ matrix.php-version }}"
+          ini-values: memory_limit=-1
+          tools: composer:v2, cs2pr
+
+      - name: "caching dependencies"
+        uses: "actions/cache@v2"
+        with:
+          path: |
+            ~/.composer/cache
+            vendor
+          key: "php-${{ matrix.php-version }}-${{ matrix.operating-system }}"
+          restore-keys: "php-${{ matrix.php-version }}-${{ matrix.operating-system }}"
+
+      - name: "removing symfony/ux-turbo-mercure on PHP 7.1"
+        if: ${{ matrix.php-version == '7.1' }}
+        run: "composer remove symfony/ux-turbo-mercure --no-update --dev"
+
+      - name: "installing lowest dependencies"
+        if: ${{ matrix.dependencies == 'lowest' }}
+        run: "composer update --prefer-lowest --no-interaction --no-progress"
+
+      - name: "installing highest dependencies"
+        if: ${{ matrix.dependencies == 'highest' }}
+        run: "composer update --no-interaction --no-progress"
+
+      - name: "installing phpunit"
+        run: "php vendor/bin/simple-phpunit install"
+
+      - name: "running unit tests"
+        run: "php vendor/bin/simple-phpunit"
