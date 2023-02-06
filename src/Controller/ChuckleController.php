@@ -35,10 +35,10 @@ class ChuckleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $chuckleRepository->save($chuckle, true);
 
-            return $this->redirectToRoute('app_chuckle_index', [], Response::HTTP_SEE_OTHER);
+            $form = $this->createForm(ChuckleType::class, new Chuckle($this->getUser()));
         }
 
-        return $this->renderForm('chuckle/new.html.twig', [
+        return $this->render('chuckle/new.html.twig', [
             'chuckle' => $chuckle,
             'form' => $form,
         ]);

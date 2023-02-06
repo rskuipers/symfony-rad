@@ -8,18 +8,7 @@
     {% endif %}
     <div id="chuckles" class="chuckles">
         {% for chuckle in chuckles %}
-            <div id="chuckle-{{ chuckle.id }}" class="chuckle my-4">
-                <div class="chuckle-author">
-                    <img src="https://i.pravatar.cc/150?u={{ chuckle.author.id }}" class="img-fluid rounded-circle"/>
-                </div>
-                <div class="chuckle-body">
-                    <p class="chuckle-message">{{ chuckle.message | nl2br }}</p>
-
-                    <div class="chuckle-footer">
-                        <time datetime="{{ chuckle.createdAt | date }}">{{ chuckle.createdAt | date('d-m-Y H:i:s') }}</time>
-                    </div>
-                </div>
-            </div>
+            {{ include('chuckle/show.html.twig', { chuckle: chuckle }) }}
         {% endfor %}
     </div>
 {% endblock %}
