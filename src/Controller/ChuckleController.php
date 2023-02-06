@@ -5,9 +5,12 @@ namespace App\Controller;
 use App\Entity\Chuckle;
 use App\Form\ChuckleType;
 use App\Repository\ChuckleRepository;
+use App\Repository\GiggleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mercure\HubInterface;
+use Symfony\Component\Mercure\Update;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -35,7 +38,7 @@ class ChuckleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $chuckleRepository->save($chuckle, true);
 
-            $form = $this->createForm(ChuckleType::class, new Chuckle($this->getUser()));
+            return $this->redirectToRoute('app_chuckle_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('chuckle/new.html.twig', [
@@ -61,22 +64,32 @@ class ChuckleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $chuckleRepository->save($chuckle, true);
 
-            return $this->redirectToRoute('app_chuckle_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_chuckle_show', ['id' => $chuckle->getId()], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('chuckle/edit.html.twig', [
+        return $this->render('chuckle/edit.html.twig', [
             'chuckle' => $chuckle,
             'form' => $form,
         ]);
     }
 
-    #[Route('/chuckle/{id}', name: 'app_chuckle_delete', methods: ['POST'])]
+    #[Route('/chuckle/{id}', name: 'app_chuckle_delete', methods: ['DELETE'])]
     public function delete(Request $request, Chuckle $chuckle, ChuckleRepository $chuckleRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$chuckle->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('turbo', $request->headers->get('X-CSRF-Token'))) {
             $chuckleRepository->remove($chuckle, true);
         }
 
         return $this->redirectToRoute('app_chuckle_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/chuckle/{id}/giggle', name: 'app_chuckle_giggle', methods: ['POST'])]
+    public function giggle(Chuckle $chuckle, HubInterface $hub, GiggleRepository $giggleRepository): Response
+    {
+        $giggleRepository->toggleGiggle($this->getUser(), $chuckle);
+
+        $hub->publish(new Update('chuckles', $this->renderView('stream/giggles.stream.html.twig', ['chuckle' => $chuckle])));
+
+        return new Response();
     }
 }

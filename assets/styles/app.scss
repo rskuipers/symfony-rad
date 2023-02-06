@@ -67,21 +67,12 @@ header {
 
         .chuckle-footer {
             margin-top: 2px;
-            display: flex;
             color: #595959;
             font-size: 14px;
 
-            time {
-                flex: 1;
-            }
-
-            .chuckle-actions {
-                align-content: end;
+            .giggle {
                 margin-right: 5px;
-
-                a {
-                    text-decoration: none;
-                }
+                text-decoration: none;
             }
         }
 

@@ -1,0 +1,19 @@
+{% block create %}
+    <turbo-stream action="prepend" target="chuckles">
+        <template>
+            {{ include('chuckle/show.html.twig', { chuckle: entity, broadcasting: true }) }}
+        </template>
+    </turbo-stream>
+{% endblock %}
+
+{% block update %}
+    <turbo-stream action="replace" target="chuckle-{{ id }}">
+        <template>
+            {{ include('chuckle/show.html.twig', { chuckle: entity, broadcasting: true }) }}
+        </template>
+    </turbo-stream>
+{% endblock %}
+
+{% block remove %}
+    <turbo-stream action="remove" target="chuckle-{{ id }}"></turbo-stream>
+{% endblock %}

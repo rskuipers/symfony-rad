@@ -3,10 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\ChuckleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\UX\Turbo\Attribute\Broadcast;
 
 #[ORM\Entity(repositoryClass: ChuckleRepository::class)]
+#[Broadcast(topics: ["chuckles"])]
 class Chuckle
 {
     #[ORM\Id]
@@ -24,9 +28,13 @@ class Chuckle
     #[ORM\Column(nullable: false)]
     private \DateTimeImmutable $createdAt;
 
+    #[ORM\OneToMany(mappedBy: 'chuckle', targetEntity: Giggle::class, orphanRemoval: true)]
+    private Collection $giggles;
+
     public function __construct(User $user)
     {
         $this->author = $user;
+        $this->giggles = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
     }
 
