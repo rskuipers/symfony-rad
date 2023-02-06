@@ -38,6 +38,7 @@ class ComposerStaticInita89b8907c62f00eedd51796ddab9579b
         'S' => 
         array (
             'Symfony\\WebpackEncoreBundle\\' => 28,
+            'Symfony\\UX\\Turbo\\' => 17,
             'Symfony\\Runtime\\Symfony\\Component\\' => 34,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Intl\\Normalizer\\' => 33,
@@ -180,6 +181,10 @@ class ComposerStaticInita89b8907c62f00eedd51796ddab9579b
         'Symfony\\WebpackEncoreBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src',
+        ),
+        'Symfony\\UX\\Turbo\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/ux-turbo/src',
         ),
         'Symfony\\Runtime\\Symfony\\Component\\' => 
         array (
