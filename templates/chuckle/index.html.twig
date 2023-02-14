@@ -3,33 +3,12 @@
 {% block title %}Chuckle index{% endblock %}
 
 {% block body %}
-    <h1>Chuckle index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Message</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    {% if app.user %}
+        {{ include('chuckle/new.html.twig') }}
+    {% endif %}
+    <div id="chuckles" class="chuckles">
         {% for chuckle in chuckles %}
-            <tr>
-                <td>{{ chuckle.id }}</td>
-                <td>{{ chuckle.message }}</td>
-                <td>
-                    <a href="{{ path('app_chuckle_show', {'id': chuckle.id}) }}">show</a>
-                    <a href="{{ path('app_chuckle_edit', {'id': chuckle.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
+            {{ include('chuckle/show.html.twig', { chuckle: chuckle }) }}
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_chuckle_new') }}">Create new</a>
+    </div>
 {% endblock %}

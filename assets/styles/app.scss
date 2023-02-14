@@ -1,3 +1,88 @@
-body {
-    background-color: lightgray;
+@font-face {
+    font-family: 'Oh Whale';
+    font-style: normal;
+    font-display: swap;
+    src: url(../fonts/oh-whale.ttf) format('truetype');
+}
+
+$primary: #1a659e;
+$table-color: #fff;
+$body-bg: #dedede;
+$body-color: #000;
+$headings-font-family: "Oh Whale", sans-serif;
+$headings-color: #000;
+
+@import "bootstrap";
+
+.btn {
+    --bs-btn-color: #fff;
+}
+
+header {
+    background-color: $primary;
+
+    .btn:hover {
+        background-color: darken($primary, 5%);
+        color: #fff;
+    }
+
+    .btn-primary {
+        background-color: darken($primary, 5%);
+
+        &:hover {
+            background-color: darken($primary, 10%);
+        }
+    }
+
+    .logo {
+        color: #fff;
+        font-size: 66px;
+        text-shadow: 2px 2px 2px #423f3f;
+    }
+}
+
+.send-chuckle {
+    background: #fff;
+    padding: 10px 0;
+
+    .chuckle-author {
+        max-width: 50px;
+    }
+}
+
+.chuckle {
+    display: flex;
+
+    .chuckle-author {
+        max-width: 50px;
+        max-height: 50px;
+        margin-top: auto;
+        flex: 1;
+    }
+
+    .chuckle-body {
+        flex-grow: 1;
+        margin-left: 20px;
+
+
+        .chuckle-footer {
+            margin-top: 2px;
+            color: #595959;
+            font-size: 14px;
+
+            .giggle {
+                margin-right: 5px;
+                text-decoration: none;
+            }
+        }
+
+
+        p {
+            background: #fff;
+            padding: 20px;
+            margin: 0;
+            border-radius: 10px 10px 10px 0;
+            box-shadow: 2px 2px 1px #bdbdbd;
+        }
+    }
 }

@@ -11,18 +11,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/chuckle')]
 class ChuckleController extends AbstractController
 {
     #[Route('/', name: 'app_chuckle_index', methods: ['GET'])]
     public function index(ChuckleRepository $chuckleRepository): Response
     {
+        $form = $this->createForm(ChuckleType::class);
+
         return $this->render('chuckle/index.html.twig', [
-            'chuckles' => $chuckleRepository->findAll(),
+            'chuckles' => $chuckleRepository->getTimeline(),
+            'form' => $form->createView()
         ]);
     }
 
-    #[Route('/new', name: 'app_chuckle_new', methods: ['GET', 'POST'])]
+    #[Route('/chuckle/new', name: 'app_chuckle_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
     public function new(Request $request, ChuckleRepository $chuckleRepository): Response
     {
@@ -36,13 +38,13 @@ class ChuckleController extends AbstractController
             return $this->redirectToRoute('app_chuckle_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('chuckle/new.html.twig', [
+        return $this->render('chuckle/new.html.twig', [
             'chuckle' => $chuckle,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_chuckle_show', methods: ['GET'])]
+    #[Route('/chuckle/{id}', name: 'app_chuckle_show', methods: ['GET'])]
     public function show(Chuckle $chuckle): Response
     {
         return $this->render('chuckle/show.html.twig', [
@@ -50,7 +52,7 @@ class ChuckleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_chuckle_edit', methods: ['GET', 'POST'])]
+    #[Route('/chuckle/{id}/edit', name: 'app_chuckle_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Chuckle $chuckle, ChuckleRepository $chuckleRepository): Response
     {
         $form = $this->createForm(ChuckleType::class, $chuckle);
@@ -62,13 +64,13 @@ class ChuckleController extends AbstractController
             return $this->redirectToRoute('app_chuckle_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('chuckle/edit.html.twig', [
+        return $this->render('chuckle/edit.html.twig', [
             'chuckle' => $chuckle,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_chuckle_delete', methods: ['POST'])]
+    #[Route('/chuckle/{id}', name: 'app_chuckle_delete', methods: ['POST'])]
     public function delete(Request $request, Chuckle $chuckle, ChuckleRepository $chuckleRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$chuckle->getId(), $request->request->get('_token'))) {
