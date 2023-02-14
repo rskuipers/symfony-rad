@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token('turbo') }}">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="container-fluid">
+            <header class="row justify-content-between">
+                <div class="col">
+                    <h1 class="logo"><a href="{{ path('app_chuckle_index') }}" class="text-reset text-decoration-none">Chücklr</a></h1>
+                </div>
+                <div class="col-auto justify-content-end align-self-center">
+                    {% if app.user %}
+                        <a href="{{ path('app_logout') }}" class="btn btn-lg my-auto">Logout</a>
+                    {% else %}
+                        <a href="{{ path('app_login') }}" class="btn btn-lg my-auto">Login</a>
+                        <a href="{{ path('app_register') }}" class="btn btn-lg btn-primary my-auto">Sign up</a>
+                    {% endif %}
+                </div>
+            </header>
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+</html>

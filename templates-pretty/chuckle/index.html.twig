@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chuckle index{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        {{ include('chuckle/new.html.twig') }}
+    {% endif %}
+    <div id="chuckles" class="chuckles">
+        {% for chuckle in chuckles %}
+            {{ include('chuckle/show.html.twig', { chuckle: chuckle }) }}
+        {% endfor %}
+    </div>
+{% endblock %}
