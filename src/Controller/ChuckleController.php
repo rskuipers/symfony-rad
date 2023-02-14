@@ -70,10 +70,10 @@ class ChuckleController extends AbstractController
         ]);
     }
 
-    #[Route('/chuckle/{id}', name: 'app_chuckle_delete', methods: ['POST'])]
+    #[Route('/chuckle/{id}', name: 'app_chuckle_delete', methods: ['POST', 'DELETE'])]
     public function delete(Request $request, Chuckle $chuckle, ChuckleRepository $chuckleRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$chuckle->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('turbo', $request->headers->get('X-CSRF-Token'))) {
             $chuckleRepository->remove($chuckle, true);
         }
 
