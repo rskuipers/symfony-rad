@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => 'ab4ff25b13365de5bebed0394716de6c1e7ea9b5',
+        'pretty_version' => 'dev-demo-3-turbo-installed',
+        'version' => 'dev-demo-3-turbo-installed',
+        'reference' => 'c273e22679e5006d50edd9e7559a2596f7a4ad0a',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => 'ab4ff25b13365de5bebed0394716de6c1e7ea9b5',
+            'pretty_version' => 'dev-demo-3-turbo-installed',
+            'version' => 'dev-demo-3-turbo-installed',
+            'reference' => 'c273e22679e5006d50edd9e7559a2596f7a4ad0a',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1193,6 +1193,15 @@
             'reference' => '6f3b623ca55c52862b387e1aaf1f0378e54a7a73',
             'type' => 'symfony-bundle',
             'install_path' => __DIR__ . '/../symfony/twig-bundle',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/ux-turbo' => array(
+            'pretty_version' => 'v2.7.1',
+            'version' => '2.7.1.0',
+            'reference' => '2c82aad06d7c1493615d09188b70a3a86f6cc6ab',
+            'type' => 'symfony-bundle',
+            'install_path' => __DIR__ . '/../symfony/ux-turbo',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
